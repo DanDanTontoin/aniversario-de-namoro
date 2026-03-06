@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3 Anos de Amor ❤️</title>
+    <script>
+        // Animação dos corações caindo
+        function createHearts() {
+            const container = document.getElementById('heart-container');
+            if (!container) return;
+
+            // Limpa corações existentes (opcional - remove se quiser renovar)
+            // container.innerHTML = '';
+
+            // Cria um novo coração a cada 300ms
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.className = 'heart-particle';
+                
+                // Corações em diferentes tamanhos
+                const sizes = ['❤️', '🧡', '💛', '💚', '💙', '💜', '🤍'];
+                heart.innerHTML = sizes[Math.floor(Math.random() * sizes.length)];
+                
+                // Posição horizontal aleatória
+                heart.style.left = Math.random() * 100 + '%';
+                
+                // Tamanho aleatório (entre 15px e 35px)
+                const size = Math.random() * 20 + 15;
+                heart.style.fontSize = size + 'px';
+                
+                // Duração da animação aleatória (entre 4 e 8 segundos)
+                heart.style.animationDuration = Math.random() * 4 + 4 + 's';
+                
+                // Atraso aleatório para não começar todos juntos
+                heart.style.animationDelay = Math.random() * 2 + 's';
+                
+                // Opacidade inicial
+                heart.style.opacity = Math.random() * 0.5 + 0.3;
+                
+                container.appendChild(heart);
+                
+                // Remove o coração após a animação terminar
+                setTimeout(() => {
+                    heart.remove();
+                }, 10000); // 10 segundos (tempo máximo da animação + margem)
+                
+            }, 300); // Cria um coração a cada 300ms
+        }
+
+// Inicia a animação quando a página carregar
+document.addEventListener('DOMContentLoaded', createHearts);
+
+        // Função para controlar a aba de música
+        function toggleMusic() {
+            const musicContent = document.getElementById('musicContent');
+            musicContent.classList.toggle('show');
+        }
+
+        // Fecha a aba se clicar fora dela
+        document.addEventListener('click', function(event) {
+            const musicPlayer = document.querySelector('.music-player');
+            const musicContent = document.getElementById('musicContent');
+            
+            if (!musicPlayer.contains(event.target) && musicContent.classList.contains('show')) {
+                musicContent.classList.remove('show');
+            }
+        });
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #9d7ac5 0%, #4b71a2 100%);
+            min-height: 100vh;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 50px 0;
+            animation: fadeIn 2s ease-in;
+        }
+
+        .header h1 {
+            font-size: 3.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .date-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 10px 30px;
+            border-radius: 50px;
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 1.3em;
+            border: 2px solid rgba(255,255,255,0.5);
+        }
+
+        /* Seções */
+        .section {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+        }
+
+        .section-title {
+            font-size: 2em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px solid rgba(255,255,255,0.3);
+            padding-bottom: 10px;
+        }
+
+        /* Grid de imagens */
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .image-card {
+            background: rgba(255,255,255,0.15);
+            border-radius: 15px;
+            overflow: hidden;
+            aspect-ratio: 1;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.1);
+            border: 2px dashed rgba(255,255,255,0.3);
+            color: rgba(255,255,255,0.5);
+            font-size: 1em;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Cards de texto */
+        .text-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .text-card {
+            background: rgba(255,255,255,0.15);
+            border-radius: 15px;
+            padding: 30px;
+            min-height: 200px;
+            border: 2px dashed rgba(255,255,255,0.3);
+        }
+
+        .text-placeholder {
+            color: rgba(255,255,255,0.5);
+            text-align: center;
+            font-style: italic;
+        }
+
+        /* Linha do tempo */
+        .timeline {
+            margin-top: 30px;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .timeline-date {
+            min-width: 80px;
+            font-weight: bold;
+            color: #ffd700;
+        }
+
+        .timeline-content {
+            flex: 1;
+        }
+
+        .timeline-content h3 {
+            margin-bottom: 10px;
+        }
+
+        .timeline-image-placeholder {
+            width: 100px;
+            height: 100px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed rgba(255,255,255,0.3);
+            color: rgba(255,255,255,0.5);
+        }
+
+        .timeline-text-placeholder {
+            flex: 1;
+            padding: 15px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            border: 2px dashed rgba(255,255,255,0.3);
+            color: rgba(255,255,255,0.5);
+            font-style: italic;
+        }
+
+        /* Mensagem final */
+        .love-message {
+            text-align: center;
+            padding: 40px;
+            font-size: 1.5em;
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            border-radius: 50px;
+            margin-top: 40px;
+        }
+
+        .love-message-placeholder {
+            color: rgba(255,255,255,0.8);
+            font-style: italic;
+        }
+        /* Estilo dos corações */
+        #heart-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            overflow: hidden;
+        }
+
+        .heart-particle {
+            position: absolute;
+            font-size: 20px;
+            color: rgba(255, 107, 107, 0.8);
+            animation: floatHeart linear infinite;
+            user-select: none;
+        }
+        /* Estilo da aba de música */
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 10000;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .music-tab {
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .music-tab:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(255,107,107,0.4);
+        }
+
+        .music-tab i {
+            font-size: 1.2em;
+            animation: rotate 3s linear infinite;
+        }
+
+        .music-text {
+            font-weight: 600;
+            font-size: 1em;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .music-content {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 320px;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            display: none;
+            margin-bottom: 10px;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .music-content.show {
+            display: block;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .music-header {
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+
+        .close-music {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5em;
+            cursor: pointer;
+            padding: 0 5px;
+            line-height: 1;
+        }
+
+        .close-music:hover {
+            opacity: 0.8;
+        }
+
+        .audio-player {
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .album-art {
+            width: 100px;
+            height: 100px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid white;
+            animation: rotate 10s linear infinite;
+        }
+
+        .album-art i {
+            font-size: 3em;
+            color: #ff6b6b;
+            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.3));
+        }
+
+        .song-info {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .song-info h4 {
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+
+        .song-info p {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .audio-player audio {
+            width: 100%;
+            margin: 15px 0;
+            border-radius: 30px;
+        }
+
+        .audio-player audio::-webkit-media-controls-panel {
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+        }
+
+        .audio-player audio::-webkit-media-controls-play-button {
+            background-color: white;
+            border-radius: 50%;
+        }
+
+        .music-note {
+            text-align: center;
+            font-size: 0.85em;
+            opacity: 0.9;
+            margin: 10px 0 5px;
+        }
+
+        .platform-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .platform-btn {
+            padding: 8px 15px;
+            border-radius: 20px;
+            text-decoration: none;
+            color: white;
+            font-size: 0.9em;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .platform-btn:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        .spotify {
+            background: #1DB954;
+        }
+
+        .youtube-music {
+            background: #FF0000;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .music-player {
+                bottom: 10px;
+                right: 10px;
+            }
+            
+            .music-content {
+                width: 280px;
+                right: 0;
+            }
+            
+            .music-tab {
+                padding: 10px 15px;
+            }
+            
+            .music-text {
+                display: none;
+            }
+            
+            .music-tab i {
+                font-size: 1.5em;
+                margin: 0;
+            }
+            
+            .album-art {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .album-art i {
+                font-size: 2em;
+            }
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(-10vh) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(110vh) translateX(20px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px;
+            opacity: 0.8;
+        }
+
+        /* Animações */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes heartBeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .heart {
+            color: #ff6b6b;
+            animation: heartBeat 1s ease infinite;
+            display: inline-block;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5em;
+            }
+            
+            .section-title {
+                font-size: 1.5em;
+            }
+            
+            .timeline-item {
+                flex-direction: column;
+            }
+            
+            .timeline-image-placeholder {
+                width: 100%;
+                height: 150px;
+            }
+        }
+
+        /* Dicas visuais */
+        .dica {
+            font-size: 0.8em;
+            color: rgba(255,255,255,0.3);
+            text-align: center;
+            margin-top: 5px;
+        }
+    </style>
+    <!-- Font Awesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <div id="heart-container"></div>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>Feliz 3 Anos de Namoro! <span class="heart">❤️</span></h1>
+            <p>Nossa história de amor em imagens e memórias</p>
+            <div class="date-badge">
+                <i class="far fa-calendar-alt"></i> 07/03 - Nosso Dia Especial
+            </div>
+        </header>
+
+        <!-- Seção 1: Nossas Fotos Favoritas -->
+        <section class="section">
+            <div class="section-title">
+                <i class="fas fa-camera-retro"></i>
+                <h2>Nossas Fotos Favoritas</h2>
+            </div>
+            <div class="image-grid">
+                <!-- Card 1 - SUBSTITUA O CONTEÚDO ABAIXO PELA SUA IMAGEM -->
+                <div class="image-card">
+                    <div class="image-placeholder">
+                        <img src="C:\Users\danie\Desktop\aniversario de namoro\img\IMG-20260305-WA0066.jpg" 
+                        alt="Aniversário do seu mozão" 
+                        style="width: 100%; height: 100%; object-fit: cover;">
+                        
+                    </div>
+                </div>
+                
+                <!-- Card 2 - SUBSTITUA O CONTEÚDO ABAIXO PELA SUA IMAGEM -->
+                <div class="image-card">
+                    <div class="image-placeholder">
+                        <img src="C:\Users\danie\Desktop\aniversario de namoro\img\IMG-20260305-WA0064.jpg" 
+                        alt="dawm" 
+                        style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                </div>
+                
+                <!-- Card 3 - SUBSTITUA O CONTEÚDO ABAIXO PELA SUA IMAGEM -->
+                <div class="image-card">
+                    <div class="image-placeholder">
+                        <img src="C:\Users\danie\Desktop\aniversario de namoro\img\IMG-20260305-WA0065.jpg" 
+                        alt="dawm" 
+                        style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                </div>
+                
+                <!-- Card 4 - SUBSTITUA O CONTEÚDO ABAIXO PELA SUA IMAGEM -->
+                <div class="image-card">
+                    <div class="image-placeholder">
+                        <img src="C:\Users\danie\Desktop\aniversario de namoro\img\IMG_20260305_235159.jpg" 
+                        alt="dawm" 
+                        style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção 2: Nossas Memórias em Texto -->
+        <section class="section">
+            <div class="section-title">
+                <i class="fas fa-heart"></i>
+                <h2>Mensagens</h2>
+            </div>
+            <div class="text-grid">
+                <!-- Card de texto 1 - SUBSTITUA PELO SEU TEXTO -->
+                <div class="text-card">
+                    <div class="text-placeholder">
+                        Te conheci na escola, uma moreninha de cabelo cacheado, já logo me interessei. Lembro da nossa primeira interação, eu tentando colocar café no refeitório do IF e quase derrubando o recipiente todo, ainda bem que você estava logo atrás de mim pra ensinar pro burrinho como se fazia. Começamos a trocar mensagens e quando me dei por mim mesmo, te dei um primeiro selinho, todo desconcertante, mas acho que valeu de algo.<br>
+                        Ex: Como nos conhecemos, nosso primeiro encontro, etc.
+                    </div>
+                </div>
+                
+                <!-- Card de texto 2 - SUBSTITUA PELO SEU TEXTO -->
+                <div class="text-card">
+                    <div class="text-placeholder">
+                        O que mais me admira em você é sua responsabilidade, inteligência (e sim, você é muito). Em pouco tempo namorando você já logo percebi que sentia que queria aquele mesmo sentimento para sempre, junto, grudado em mim.<br>
+                        Ex: O que mais admiro em você, momentos especiais, etc.
+                    </div>
+                </div>
+                
+                <!-- Card de texto 3 - SUBSTITUA PELO SEU TEXTO -->
+                <div class="text-card">
+                    <div class="text-placeholder">
+                        Mesmo com essa distância infernal, nunca me senti realmente longe de você, claro que a saudade sempre prevalece, a vontade do contato e tudo mais, mas parece que estamos planejando e fazendo coisas para que no futuro (não muito distante) possamos viver grudadinhos todos os dias <br>
+                        Ex: Nossos planos para o futuro, sonhos juntos, etc.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção 3: Linha do Tempo do Amor -->
+        <section class="section">
+            <div class="section-title">
+                <i class="fas fa-clock"></i>
+                <h2>Nossa Linha do Tempo</h2>
+            </div>
+            <div class="timeline">
+                <!-- Ano 1 -->
+                <div class="timeline-item">
+                    <div class="timeline-date">Ano 1</div>
+                    <div class="timeline-content">
+                        <h3>2023 - O Começo</h3>
+                        <div style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
+                            <!-- SUBSTITUA PELA IMAGEM DO ANO 1 -->
+                            <div class="timeline-image-placeholder">
+                                <img src="C:\Users\danie\Desktop\aniversario de namoro\img\IMG_20260305_235715.jpg" 
+                                alt="Nosso primeiro encontro" 
+                                style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                            <!-- SUBSTITUA PELO TEXTO DO ANO 1 -->
+                            <div class="timeline-text-placeholder">
+                                Seu aniversário, um conhecendo a familía do outro<br>
+                                Nossas primeiras aventuras, memórias do primeiro ano...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Ano 2 -->
+                <div class="timeline-item">
+                    <div class="timeline-date">Ano 2</div>
+                    <div class="timeline-content">
+                        <h3>2024 - Crescendo Juntos</h3>
+                        <div style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
+                            <!-- SUBSTITUA PELA IMAGEM DO ANO 2 -->
+                            <div class="timeline-image-placeholder">
+                                <img src="C:\Users\danie\Desktop\aniversario de namoro\img\IMG_20260305_235159.jpg" 
+                                alt="Nosso primeiro encontro" 
+                                style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                            
+                            <!-- SUBSTITUA PELO TEXTO DO ANO 2 -->
+                            <div class="timeline-text-placeholder">
+                                Sofrendo no IF juntos, criando muito carinho e intimidade<br>
+                                Momentos inesquecíveis do segundo ano...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Ano 3 -->
+                <div class="timeline-item">
+                    <div class="timeline-date">Ano 3</div>
+                    <div class="timeline-content">
+                        <h3>2025 - Amor Eterno</h3>
+                        <div style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
+                            <!-- SUBSTITUA PELA IMAGEM DO ANO 3 -->
+                            <div class="timeline-image-placeholder">
+                                <img src="C:\Users\danie\Desktop\aniversario de namoro\img\IMG_20251114_221040.jpg" 
+                                alt="Nosso primeiro encontro" 
+                                style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                            <!-- SUBSTITUA PELO TEXTO DO ANO 3 -->
+                            <div class="timeline-text-placeholder">
+                                Muitas mudanças e desafios se apresentaram, mas nos mantemos fortes<br>
+                                Memórias do terceiro ano juntos...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção 4: Mensagem Especial -->
+        <section class="section">
+            <div class="section-title">
+                <i class="fas fa-envelope-open-text"></i>
+                <h2>Mensagem de Amor</h2>
+            </div>
+            <div class="love-message">
+                <div class="love-message-placeholder">
+                    Três anos ao seu lado são apenas o começo da nossa eternidade...
+                    ❤️<br>
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção 5: Espaço para Fotos Extras -->
+        <section class="section">
+            <div class="section-title">
+                <i class="fas fa-images"></i>
+                <h2>Momentos Especiais</h2>
+            </div>
+            <div class="image-grid">
+                <!-- Card 5 - SUBSTITUA PELA IMAGEM EXTRA 1 -->
+                <div class="image-card">
+                    <div class="image-placeholder">
+                        <img src="C:\Users\danie\Desktop\aniversario de namoro\img\especiais\IMG_20230322_180040.jpg" 
+                                alt="Nosso primeiro encontro" 
+                                style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                </div>
+                
+                <!-- Card 6 - SUBSTITUA PELA IMAGEM EXTRA 2 -->
+                <div class="image-card">
+                    <div class="image-placeholder">
+                        <img src="C:\Users\danie\Desktop\aniversario de namoro\img\especiais\Screenshot_2026-03-06-00-32-02-822_com.google.android.apps.photos-edit.jpg" 
+                                alt="Nosso primeiro encontro" 
+                                style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                </div>
+                
+                <!-- Card 7 - SUBSTITUA PELA IMAGEM EXTRA 3 -->
+                <div class="image-card">
+                    <div class="image-placeholder">
+                        <img src="C:\Users\danie\Desktop\aniversario de namoro\img\especiais\IMG_20260306_001857.jpg" 
+                                alt="Nosso primeiro encontro" 
+                                style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                </div>
+                
+                <!-- Card 8 - SUBSTITUA PELA IMAGEM EXTRA 4 -->
+                <div class="image-card">
+                    <div class="image-placeholder">
+                        <img src="C:\Users\danie\Desktop\aniversario de namoro\img\especiais\IMG-20241101-WA0012.jpg" 
+                                alt="Nosso primeiro encontro" 
+                                style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- music player -->
+        <div class="music-player">
+    <div class="music-tab" onclick="toggleMusic()">
+        <i class="fas fa-music"></i>
+        <span class="music-text">Música</span>
+    </div>
+    <div class="music-content" id="musicContent">
+        <div class="music-header">
+            <span>Nossa Música</span>
+            <button onclick="toggleMusic()" class="close-music">×</button>
+        </div>
+        <div class="audio-player">
+            <div class="album-art">
+                <i class="fas fa-heart"></i>
+            </div>
+            <div class="song-info">
+                <h4>Nossa Música Especial</h4>
+                <p>3 Anos de Amor</p>
+            </div>
+            <audio id="loveSong" controls>
+                <!-- SUBSTITUA O CAMINHO ABAIXO PELO ARQUIVO DE MÚSICA -->
+                <source src="C:\Users\danie\Desktop\aniversario de namoro\som\Scorpions - Still Loving You.mp3" type="audio/mpeg">
+                Seu navegador não suporta o elemento de áudio.
+            </audio>
+            <div class="music-links">
+                <p class="music-note">🎵 Clique no player acima para tocar</p>
+                <p class="music-note">Ou ouça no:</p>
+                <div class="platform-buttons">
+                    <a href="https://open.spotify.com/intl-pt/track/7kjsCbksOZotNNHOvKsJJh?si=2e00cf4e3a864ff6" target="_blank" class="platform-btn spotify">
+                        <i class="fab fa-spotify"></i> Spotify
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=7pOr3dBFAeY" target="_blank" class="platform-btn youtube-music">
+                        <i class="fab fa-youtube"></i> YouTube
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+        <!-- Footer -->
+        <footer>
+            <p>Feito com <span class="heart">❤️</span> para celebrar 3 anos de amor</p>
+            <p style="font-size: 0.9em; margin-top: 10px;">07/03/2023 - 07/03/2026</p>
+        </footer>
+    </div>
+
+    <!-- INSTRUÇÕES DE COMO SUBSTITUIR OS CONTEÚDOS: -->
+    <!-- 
+        PARA ADICIONAR IMAGENS:
+        Substitua o conteúdo do div com classe "image-placeholder" por:
+        <img src="caminho/da/sua/imagem.jpg" alt="Descrição da foto" style="width: 100%; height: 100%; object-fit: cover;">
+        
+        PARA ADICIONAR TEXTOS:
+        Substitua o conteúdo dos placeholders de texto pelos seus textos reais, mantendo as tags HTML se quiser formatação.
+        
+        EXEMPLO PRÁTICO:
+        Em vez de:
+        <div class="image-placeholder">[ESPAÇO PARA FOTO 1]</div>
+        
+        Coloque:
+        <img src="fotos/nosso-primeiro-beijo.jpg" alt="Nosso primeiro beijo" style="width: 100%; height: 100%; object-fit: cover;">
+    -->
+</body>
+</html>
